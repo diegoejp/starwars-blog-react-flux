@@ -1,0 +1,74 @@
+.dContainer {
+  background-image: url("/src/img/fondo_estrellas.jpg");
+}
+.centrado {
+  margin: 0 auto;
+}
+
+/*Navbar*/
+.navbar-contenedor {
+  background-color: black;
+  border: 0.5px solid #8a8a8a;
+  border-left: none;
+  border-right: none;
+  text-align: center;
+  padding: 13px;
+  padding-right: 0;
+  padding-left: 0;
+}
+.navbar-link {
+  text-decoration: none;
+  color: #8a8a8a;
+  font-size: 20px;
+  border: 0.5px solid #8a8a8a;
+  border-bottom: none;
+  border-top: none;
+  padding: 15px;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+.navbar-link:hover {
+  color: white;
+}
+
+/*HEADER*/
+.dContainer h1 {
+  margin: 0;
+}
+.header {
+  text-align: center;
+  color: white;
+}
+.enlace {
+  font-size: 25px;
+  color: #8a8a8a;
+}
+.enlace:hover {
+  color: white;
+}
+.busqueda {
+  background-color: rgba(126, 125, 125, 0.246);
+  border-radius: 10px;
+  color: #ffffff;
+  width: 300px;
+}
+
+/*HOME*/
+.carru {
+  margin: 0 auto;
+}
+/*Personajes*/
+.personajes {
+  color: #c8c7c7;
+}
+.favorite {
+  color: white;
+  font-size: 25px;
+  background-color: black;
+}
+.favorite:hover {
+  color: red;
+}
+.cont-personaje {
+  background-color: rgba(0, 0, 0, 0.7);
+}
