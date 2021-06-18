@@ -4,6 +4,9 @@
 .centrado {
   margin: 0 auto;
 }
+html {
+  background-image: url("/src/img/fondo_estrellas.jpg");
+}
 
 /*Navbar*/
 .navbar-contenedor {
@@ -71,4 +74,8 @@
 }
 .cont-personaje {
   background-color: rgba(0, 0, 0, 0.7);
+}
+.paginacion {
+  background-color: black;
+  padding: 5px;
 }

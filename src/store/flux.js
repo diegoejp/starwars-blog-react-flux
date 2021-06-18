@@ -1,26 +1,39 @@
 const getState = ({ getStore, getActions, setStore }) => {
-    return {
-        store: {
-            personajes: [],
-            
-            
-        },
-        actions: {
-            
-            getPersonajes: () => {
-                fetch("https://www.swapi.tech/api/people?page=1&limit=9")
-                    .then((response) => {return response.json(); })
-                    .then((data) => {
-                        console.log(data);
-                        setStore({
-                            personajes: data
-                        });
-                     })
-                    .catch((error) => { });
-            },
-          
-        }
-    }
-}
+  return {
+    store: {
+      personajes: [],
+      favoritos: [],
+    },
+    actions: {
+      getPersonajes: (url) => {
+        fetch(url)
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+            setStore({
+              personajes: data,
+            });
+          })
+          .catch((error) => {});
+      },
+      getVehicles: () => {
+        fetch()
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+          });
+      },
+      agregarFavorito: (valor) => {
+        setStore({
+          favoritos: valor,
+        });
+      },
+    },
+  };
+};
 
 export default getState;
