@@ -14,6 +14,7 @@ function Personajes() {
   let btnNext = createRef();
   const { store, actions } = useContext(Context);
   const { personajes } = store;
+  const {favoritos} = store;
 
   const { results } = personajes;
 
@@ -30,10 +31,18 @@ function Personajes() {
     actions.getPersonajes(t);
   }
   const [favo, setFavo] = useState([]);
-  function aFavorito(valor) {
-    // setFavo([...favo, valor]);
-    actions.agregarFavorito(valor);
+
+  function aFavorito(nombre,uid) {
+    let personajito = nombre + uid;
+    console.log(personajito);
+    setFavo([...favo, personajito]);
+    actions.agregarFavorito(favo)
+    
+     
   }
+
+
+  
   // function desactivarBoton() {
   //   if (btnNext !== null) {
   //     btnNext.classList.add("bg-primary");
@@ -71,6 +80,24 @@ function Personajes() {
         <div className="col-md-12 text-center p-2 mb-3">
           <h1>Characters</h1>
         </div>
+        <div>
+          {/* <div className="dropdown">
+            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Favoritos
+            </button>
+            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                {favoritos.map((value,index)=>{
+                  return(
+                    <>
+                      <li className="dropdown-item">
+                        {value}
+                      </li>
+                    </>
+                  )
+                })}
+            </ul>
+          </div> */}
+        </div>
         <div className="row centrado">
           {!!results &&
             results.map((personaje) => {
@@ -92,7 +119,7 @@ function Personajes() {
                       <span
                         className="favorite p-2"
                         onClick={() => {
-                          aFavorito(personaje.name);
+                          aFavorito(personaje.name,personaje.uid);
                         }}
                       >
                         <FaHeart />

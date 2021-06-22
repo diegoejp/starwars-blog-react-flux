@@ -13,7 +13,7 @@ function PersonaDetalle({ history, Location, match, ...props }) {
         });
       })
       .catch();
-  }, []);
+  },[]);
   const { name, url } = match.params;
   console.log(name);
 
@@ -41,19 +41,47 @@ function PersonaDetalle({ history, Location, match, ...props }) {
 
   return (
     <>
-      <h1>
-        Hola{name} y mi uid es {url}
+      <h1 className="text-center">
+        {name} 
       </h1>
 
       {!!result && (
-        <div className="bg-success">
-          <p>Mass: {result.properties.mass}</p>
-          <p>Color de Ojos: {result.properties.eye_color}</p>
-          <p>Color Pelo: {result.properties.hair_color}</p>
-          <p>Skin Color: {result.properties.skin_color}</p>
-          <p>Altura: {result.properties.height}</p>
-          <p>Gender: {result.properties.gender}</p>
-          <p>Mundo: {result.properties.homeworld}</p>
+        <div className="container-fluid">
+          <div className="row justify-content-center">
+            <div className="col-3">
+              <div>
+                <img src="https://picsum.photos/200/300" alt="" />
+              </div>
+            </div>
+            <div className="col-3 text-center">
+                 <ul className="list-group bg-dark">
+            <li className="list-group-item">
+              <span className="float-start fs-5 fw-bold">Mass:</span> <span className="float-end fs-5">{result.properties.mass}</span>
+            </li>
+             <li className="list-group-item">
+              <span className="float-start fs-5 fw-bold">Altura:</span> <span className="float-end fs-5">{result.properties.height}</span>
+            </li>
+             <li className="list-group-item">
+              <span className="float-start fs-5 fw-bold">Gender:</span> <span className="float-end fs-5">{result.properties.gender}</span>
+            </li>
+            <li className="list-group-item">
+              <span className="float-start fs-5 fw-bold">Color de Ojos:</span > <span className="float-end fs-5">{result.properties.eye_color}</span>
+            </li>
+            <li className="list-group-item">
+              <span className="float-start fs-5 fw-bold">Skin Color:</span> <span className="float-end fs-5">{result.properties.skin_color}</span>
+            </li>
+            <li className="list-group-item">
+              <span className="float-start fs-5 fw-bold">Color Pelo:</span> <span className="float-end fs-5">{result.properties.hair_color}</span>
+            </li>
+            <li className="list-group-item">
+              <span className="float-start fs-5 fw-bold">Mundo:</span> <span className="float-end fs-5">{result.properties.homeworld}</span>
+            </li>
+          </ul>
+            </div>
+          </div>
+         
+         
+         
         </div>
       )}
       <div>

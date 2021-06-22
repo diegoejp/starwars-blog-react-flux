@@ -29,7 +29,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       agregarFavorito: (valor) => {
         setStore({
-          favoritos: valor,
+          favoritos: valor
         });
       },
     },
