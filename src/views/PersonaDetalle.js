@@ -1,9 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 function PersonaDetalle({ history, Location, match, ...props }) {
+  const { name, url } = match.params;
+  console.log(name);
+  const {store,actions} = useContext(Context);
+  const {personajeSeleccionado,infoPersonajeN} = store;
+  let superUrl = personajeSeleccionado[personajeSeleccionado.length-1]
   useEffect(() => {
-    fetch(`https://www.swapi.tech/api/people/${url}`)
+    fetch(personajeSeleccionado.url)
       .then((response) => {
         return response.json();
       })
@@ -11,11 +17,14 @@ function PersonaDetalle({ history, Location, match, ...props }) {
         setInfoPersonaje({
           personaje: data,
         });
+        actions.agregarInfoPersonaje(data)
+        actions.marcarPersonajeFavorito(data)
+        actions.agregarInfoPersonaje(data)
       })
       .catch();
   },[]);
-  const { name, url } = match.params;
-  console.log(name);
+  
+  
 
   //Personaje
   const [infoPersonaje, setInfoPersonaje] = useState({
@@ -24,6 +33,8 @@ function PersonaDetalle({ history, Location, match, ...props }) {
 
   const { personaje } = infoPersonaje;
   const { result } = personaje;
+  
+  
 
   // const {store} = useContext(Context);
   // const {personajes} = store;
@@ -36,14 +47,19 @@ function PersonaDetalle({ history, Location, match, ...props }) {
   //     }
   // }
   // }
+  // console.log(infoPersonajeN.result.properties.name);
 
+  console.log(personaje);
   console.log(result);
+  console.log(personajeSeleccionado)
 
   return (
     <>
-      <h1 className="text-center">
-        {name} 
-      </h1>
+      
+      
+      <h2>{personajeSeleccionado.mass}</h2>
+      <h2>{personajeSeleccionado.height}</h2>
+     
 
       {!!result && (
         <div className="container-fluid">
@@ -56,7 +72,7 @@ function PersonaDetalle({ history, Location, match, ...props }) {
             <div className="col-3 text-center">
                  <ul className="list-group bg-dark">
             <li className="list-group-item">
-              <span className="float-start fs-5 fw-bold">Mass:</span> <span className="float-end fs-5">{result.properties.mass}</span>
+              <span className="float-start fs-5 fw-bold">Mass:</span> <span className="float-end fs-5">{result.properties.name}</span>
             </li>
              <li className="list-group-item">
               <span className="float-start fs-5 fw-bold">Altura:</span> <span className="float-end fs-5">{result.properties.height}</span>
@@ -78,6 +94,17 @@ function PersonaDetalle({ history, Location, match, ...props }) {
             </li>
           </ul>
             </div>
+           {personajeSeleccionado&&
+          Object.entries(result.properties).map((propiedad,valor)=>{
+            console.log(personajeSeleccionado.name);
+            return(
+              <>
+              <li>
+                {propiedad[0]} : {propiedad[1]}
+              </li>
+              </>
+            )
+          })} 
           </div>
          
          

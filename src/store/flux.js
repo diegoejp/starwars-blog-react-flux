@@ -3,6 +3,8 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       personajes: [],
       favoritos: [],
+      personajeSeleccionado : [],
+      infoPersonajeN : []
     },
     actions: {
       getPersonajes: (url) => {
@@ -28,10 +30,23 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
       },
       agregarFavorito: (valor) => {
+        let {favoritos} = getStore();
+     
         setStore({
-          favoritos: valor
+          favoritos: favoritos.concat(valor)
         });
       },
+      marcarPersonajeFavorito:(valor) =>{
+        
+        setStore({
+          personajeSeleccionado: valor
+        })
+      },
+      agregarInfoPersonaje:(valor)=>{
+        setStore({
+          infoPersonajeN : valor
+        })
+      }
     },
   };
 };

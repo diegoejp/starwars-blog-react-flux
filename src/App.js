@@ -20,6 +20,7 @@ function App(){
             <Route exact path="/" component={Home}/>
             <Route exact path="/personajes" component={Personajes}/>
             <Route exact path="/:name/:url/" component={PersonaDetalle}/>
+            <Route exact path="/personaDetalle" component={PersonaDetalle}/>
             </BrowserRouter>            
         </>
     )

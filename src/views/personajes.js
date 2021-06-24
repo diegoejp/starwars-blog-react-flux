@@ -32,11 +32,11 @@ function Personajes() {
   }
   const [favo, setFavo] = useState([]);
 
-  function aFavorito(nombre,uid) {
-    let personajito = nombre + uid;
-    console.log(personajito);
-    setFavo([...favo, personajito]);
-    actions.agregarFavorito(favo)
+  function aFavorito(valor) {
+    // let personajito = nombre + uid;
+    // console.log(personajito);
+    // setFavo([...favo, personajito]);
+    actions.agregarFavorito(valor)
     
      
   }
@@ -81,22 +81,7 @@ function Personajes() {
           <h1>Characters</h1>
         </div>
         <div>
-          {/* <div className="dropdown">
-            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              Favoritos
-            </button>
-            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                {favoritos.map((value,index)=>{
-                  return(
-                    <>
-                      <li className="dropdown-item">
-                        {value}
-                      </li>
-                    </>
-                  )
-                })}
-            </ul>
-          </div> */}
+       
         </div>
         <div className="row centrado">
           {!!results &&
@@ -119,7 +104,7 @@ function Personajes() {
                       <span
                         className="favorite p-2"
                         onClick={() => {
-                          aFavorito(personaje.name,personaje.uid);
+                          aFavorito(personaje);
                         }}
                       >
                         <FaHeart />
