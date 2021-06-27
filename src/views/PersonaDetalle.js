@@ -43,16 +43,18 @@ function PersonaDetalle({ history, Location, match, ...props }) {
       {!!result && (
         <div className="container-fluid">
           <div className="row justify-content-center dContainer round">
-            <div className="col-3 bg-dark p-3">
+            <div className="col-12 col-md-3 bg-dark p-3">
               
-              <div>
-                <img className="w-100" src="https://picsum.photos/200/300" alt="" />
-                <h1 className="text-white">{result.properties.name}</h1>
-              </div>
+             
+                <div className="col-12 col-md-6 mx-auto text-center">
+                    <img className="" src="https://picsum.photos/200/300" alt="" />
+                    <h1 className="text-white">{result.properties.name}</h1>
+                </div>
+      
             </div>
-            <div className="col-3 text-center bg-dark p-3 round">
+            <div className="col-md-3 text-center bg-dark p-3 round">
                  <ul className="list-group bg-dark mt-4">
-            <li className="list-group-item list-group-item-dark">
+            <li className="list-group-item list-group-item-secondary">
               <span className="float-start  fw-bold">Descripción Física </span>
             </li>       
             <li className="list-group-item list-group-item-dark">
@@ -68,7 +70,7 @@ function PersonaDetalle({ history, Location, match, ...props }) {
               <span className="float-start  fw-bold">Color de Ojos:</span > <span className="float-end ">{result.properties.eye_color}</span>
             </li>
             <li className="list-group-item list-group-item-dark">
-              <span className="float-start  fw-bold">Skin Color:</span> <span className="float-end ">{result.properties.skin_color}</span>
+              <span className="float-start  fw-bold">Skin Color:</span> <span className="float-center ">{result.properties.skin_color}</span>
             </li>
             <li className="list-group-item list-group-item-dark">
               <span className="float-start  fw-bold">Color Pelo:</span> <span className="float-end ">{result.properties.hair_color}</span>
@@ -77,14 +79,18 @@ function PersonaDetalle({ history, Location, match, ...props }) {
             
           </ul>
             </div>
-            <div className="col-3 text-center bg-dark p-3 round">
-              <ul className="list-group">
-                <li className="list-group-item list-group-item-dark">
-                  Información Biográfica
+            <div className="col-md-3 text-center bg-dark p-3 round">
+              <ul className="list-group mt-4">
+                <li className="list-group-item list-group-item-secondary">
+                  <span className="float-start  fw-bold">Información Biográfica </span>
                 </li>
                 <li className="list-group-item list-group-item-dark">
-                  <span className="float-start  fw-bold">Planeta Natal:</span> <span className="float-end ">{result.properties.homeworld}</span>
+                  <span className="float-start  fw-bold">Planeta Natal:</span> <span className="float-center">{result.properties.homeworld}</span>
                 </li>
+                <li className="list-group-item list-group-item-dark">
+                  <span className="float-start  fw-bold">Nacimiento:</span> <span className="float-end ">{result.properties.birth_year}</span>
+                </li>
+                
               </ul>
             </div>
             
