@@ -14,7 +14,7 @@ function Navbar() {
       .then((data) => {
         
         actions.agregarInfoPersonaje(data)
-        actions.agregarInfoPersonaje(data)
+        
         
       })
       .catch();
@@ -28,8 +28,8 @@ function Navbar() {
     
     
   }
-   const {personajeSeleccionado,infoPersonajeN} = store;
-  let superUrl = personajeSeleccionado[personajeSeleccionado.length-1]
+   const {personajeSeleccionado} = store;
+  // let superUrl = personajeSeleccionado[personajeSeleccionado.length-1]
   return (
     <>
       <div className="row navbar-contenedor container-fluid m-0">
