@@ -1,4 +1,4 @@
-import {  useContext} from "react";
+import {  useContext, useRef} from "react";
 import { Context } from "../store/appContext";
 
 
@@ -31,10 +31,13 @@ function Personajes() {
     actions.getPersonajes(t);
   }
   
-
+ const corazon = useRef("diego")
+ 
   function aFavorito(valor) {
     
     actions.agregarFavorito(valor)
+    corazon.current.classList.add("gustado")
+    console.log(corazon.current);
     
      
   }
@@ -50,6 +53,7 @@ function Personajes() {
   //     btnNext.classList.add("bg-primary");
   //   }
   // }
+ 
   function pagina() {
     let paginaM = 10;
 
@@ -66,7 +70,7 @@ function Personajes() {
           return paginaM - 1;
         } else {
           paginaM = parseInt(a);
-          console.log(paginaM);
+          // console.log(paginaM);
 
           return paginaM - 1;
         }
@@ -75,6 +79,9 @@ function Personajes() {
         return paginaM;
       }
     }
+  }
+  function getName(name){
+    return name.toLowerCase().split(" ").join("-")+".jpg"
   }
   return (
     <>
@@ -97,16 +104,18 @@ function Personajes() {
                           aDetalle(personaje);
                         }} to="PersonaDetalle">
                         <img
-                          src="https://spoiler.bolavip.com/__export/1609270241566/sites/bolavip/img/2020/12/29/skywalker_star_wars_the_mandalorian_crop1609270240914.jpg_1902800913.jpg"
+                          className="imagen"
+                          src={`/img/personajes/${getName(personaje.name)}`}
                           alt=""
-                          width="300px"
-                          height="200px"
+                          
+                          
                         />
                       </Link>
                     </div>
                     <div className="d-flex justify-content-around">
                       <span
-                        className="favorite p-2"
+                        ref={corazon}
+                        className="favorite p-2 activeDJ"
                         onClick={() => {
                           aFavorito(personaje);
                         }}
