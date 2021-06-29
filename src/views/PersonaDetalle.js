@@ -6,7 +6,7 @@ function PersonaDetalle({ history, Location, match, ...props }) {
   // const { name, url } = match.params;
 
   const { store, actions } = useContext(Context);
-  const { personajeSeleccionado,infoPersonajeN } = store;
+  const { personajeSeleccionado, infoPersonajeN } = store;
   // let superUrl = personajeSeleccionado[personajeSeleccionado.length-1]
   useEffect(() => {
     fetch(personajeSeleccionado.url)
@@ -17,7 +17,7 @@ function PersonaDetalle({ history, Location, match, ...props }) {
         setInfoPersonaje({
           personaje: data,
         });
-         actions.agregarInfoPersonaje(data)
+        actions.agregarInfoPersonaje(data);
         // actions.marcarPersonajeFavorito(data)
       })
       .catch();
@@ -35,7 +35,9 @@ function PersonaDetalle({ history, Location, match, ...props }) {
   console.log(result);
   console.log(personajeSeleccionado);
   // console.log(infoPersonajeN.result.properties.mass);
-
+  function getName(name) {
+    return name.toLowerCase().split(" ").join("-") + ".jpg";
+  }
   return (
     <>
       {
@@ -43,10 +45,12 @@ function PersonaDetalle({ history, Location, match, ...props }) {
           <div className="container-fluid">
             <div className="row justify-content-center dContainer round">
               <div className="col-12 col-md-3 bg-dark p-3">
-                <div className="col-12 col-md-6 mx-auto text-center">
+                <div className="col-12 col-md-6 text-center">
                   <img
-                    className=""
-                    src="https://picsum.photos/200/300"
+                    className="imagen border mt-4 "
+                    src={`/img/personajes/${getName(
+                      infoPersonajeN.result.properties.name
+                    )}`}
                     alt=""
                   />
                   <h1 className="text-white">
