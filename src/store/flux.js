@@ -5,6 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       favoritos: [],
       personajeSeleccionado : [],
       infoPersonajeN : []
+      
     },
     actions: {
       getPersonajes: (url) => {
@@ -19,6 +20,18 @@ const getState = ({ getStore, getActions, setStore }) => {
             });
           })
           .catch((error) => {});
+      },
+      getInfoPPP : (url)=>{
+        fetch(url)
+        .then((response)=>{
+          return response.json();
+        })
+        .then((data)=>{
+          console.log(data);
+          setStore({
+            infoPersonajeN : data
+          })
+        })
       },
       getVehicles: () => {
         fetch()

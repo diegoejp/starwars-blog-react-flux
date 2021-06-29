@@ -1,7 +1,6 @@
-import {  useContext, useRef} from "react";
+import { useContext, useRef, useState } from "react";
 import { Context } from "../store/appContext";
-
-
+import Pagination from "react-js-pagination";
 import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 
@@ -11,12 +10,11 @@ function Personajes() {
   // const {results} = personajes;
   // console.log(results);
   let regexNum = /[0-9]/;
-  
+
   const { store, actions } = useContext(Context);
   const { personajes } = store;
-  
 
-  const { results } = personajes;
+  const { results,total_records } = personajes;
 
   function nextPage(t) {
     console.log(t);
@@ -30,30 +28,24 @@ function Personajes() {
     console.log(t);
     actions.getPersonajes(t);
   }
-  
- const corazon = useRef("diego")
- 
+
+  const corazon = useRef("diego");
+
   function aFavorito(valor) {
-    
-    actions.agregarFavorito(valor)
-    corazon.current.classList.add("gustado")
+    actions.agregarFavorito(valor);
+    corazon.current.classList.add("gustado");
     console.log(corazon.current);
-    
-     
   }
-  function aDetalle(valor){
-    actions.marcarPersonajeFavorito(valor)
-
+  function aDetalle(valor) {
+    actions.marcarPersonajeFavorito(valor);
   }
 
-
-  
   // function desactivarBoton() {
   //   if (btnNext !== null) {
   //     btnNext.classList.add("bg-primary");
   //   }
   // }
- 
+
   function pagina() {
     let paginaM = 10;
 
@@ -80,8 +72,14 @@ function Personajes() {
       }
     }
   }
-  function getName(name){
-    return name.toLowerCase().split(" ").join("-")+".jpg"
+  function getName(name) {
+    return name.toLowerCase().split(" ").join("-") + ".jpg";
+  }
+  const [activePage, setActivePage] = useState();
+  function handlePageChange(pageNumber){
+    console.log(`Pagina activa ${pageNumber}`);
+    setActivePage(pageNumber)
+    actions.getPersonajes(`https://www.swapi.tech/api/people?page=${pageNumber}&limit=9`);
   }
   return (
     <>
@@ -89,26 +87,27 @@ function Personajes() {
         <div className="col-md-12 text-center p-2 mb-3">
           <h1>Characters</h1>
         </div>
-        <div>
-       
-        </div>
+        <div></div>
         <div className="row centrado">
           {!!results &&
-            results.map((personaje) => {
+            results.map((personaje,index) => {
               return (
                 <>
-                  <div className="col-md-4 text-center mb-4 cont-personaje p-0">
-                    <h3>{personaje.name}</h3>
+                  <div className="col-md-4 text-center mb-4 cont-personaje p-0"
+                  key={index}>
+                    
+                    <h3 className="bg-dark bg-gradient d-inline p-1 rounded">{personaje.name}</h3>
                     <div className="d-flex justify-content-center">
-                      <Link onClick={() => {
+                      <Link
+                        onClick={() => {
                           aDetalle(personaje);
-                        }} to="PersonaDetalle">
+                        }}
+                        to="PersonaDetalle"
+                      >
                         <img
-                          className="imagen"
+                          className="imagen border"
                           src={`/img/personajes/${getName(personaje.name)}`}
                           alt=""
-                          
-                          
                         />
                       </Link>
                     </div>
@@ -133,7 +132,6 @@ function Personajes() {
         <div className="paginacion d-flex justify-content-center">
           <p>{pagina()}</p>
           <button
-            
             className="btn btn-dark m-1"
             onClick={() => {
               nextPage(personajes.next);
@@ -158,6 +156,27 @@ function Personajes() {
           >
             Pagina 1
           </button>
+        </div>
+      </div>
+      <div className="container-fluid dContainer">
+        <div className="row">
+          <div className="col-md-12 py-3 d-flex justify-content-center">
+            {
+              !!personajes.results&&
+            <div>
+              <Pagination
+                activePage={activePage}
+                itemsCountPerPage={personajes.results.length}
+                totalItemsCount={82}
+                pageRangeDisplayed={10}
+                onChange={handlePageChange}
+                itemClass="page-item"
+                linkClass="page-link"
+                
+              />
+            </div>
+            }
+          </div>
         </div>
       </div>
     </>
